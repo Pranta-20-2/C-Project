@@ -34,8 +34,7 @@ namespace Library_Management_Project
         private void btnCusLogin_Click(object sender, EventArgs e)
         {
             AbstractInherit Ai = new AbstractInherit();
-            Ai.Welcome();
-           
+ 
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = sqlConnection;
             cmd.CommandText = "select * from CusLogin where Username = '" + txtCusUserName.Text + "' and Password ='" + txtCusPass.Text + "'";
@@ -43,11 +42,14 @@ namespace Library_Management_Project
             DataSet ds = new DataSet();
             da.Fill(ds);
 
+
             if (ds.Tables[0].Rows.Count != 0)
             {
+                Ai.Welcome();
                 this.Hide();
                 FormCustomerDashBoard CD = new FormCustomerDashBoard();
                 CD.Show();
+                
             }
 
             else
@@ -55,6 +57,7 @@ namespace Library_Management_Project
                 MessageBox.Show("Wrong Username or Password", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 
             }
+           
         }
 
         private void txtCusUserName_MouseClick(object sender, MouseEventArgs e)
